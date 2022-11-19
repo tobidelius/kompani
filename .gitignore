@@ -1,0 +1,15 @@
+# NPM
+/node_modules
+/package-lock.json
+
+# TS
+/build
+
+# Jest
+/coverage
+
+# OS generated files
+.DS_Store
+
+# No logs shall pass!
+.log
