@@ -1,5 +1,6 @@
 export {
-  default as Request
+  default as Request,
+  RequestParams
 } from './context/request'
 
 export {

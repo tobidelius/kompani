@@ -2,6 +2,13 @@ import { IncomingMessage, IncomingHttpHeaders } from 'http'
 import { URL } from 'url'
 
 /**
+ * Request params interface.
+ */
+export interface RequestParams {
+  [x: string]: any
+}
+
+/**
  * Represents a request.
  */
 export default class Request {
@@ -23,7 +30,7 @@ export default class Request {
   /**
    * Request params is an object containing route, query and body params.
    */
-  public readonly params: Record<string, any>
+  public readonly params: RequestParams
 
   /**
    * URL meta information.
