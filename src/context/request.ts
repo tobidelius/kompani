@@ -44,6 +44,30 @@ export default class Request {
   }
 
   /**
+   * Sets a request header.
+   *
+   * @note all header keys are lower cased when set.
+   */
+  set (key: string, value: string | string[] | undefined): this {
+    this.native.headers[key.toLowerCase()] = value
+    return this
+  }
+
+  /**
+   * Gets a request header.
+   */
+  get (key: string): string | number | string[] | undefined {
+    return this.headers[key]
+  }
+
+  /**
+   * Check if a request header exist.
+   */
+  has (key: string): boolean {
+    return key in this.headers
+  }
+
+  /**
    * Get URL protocol: http(s).
    */
   get protocol (): string {

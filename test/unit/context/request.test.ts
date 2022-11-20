@@ -3,6 +3,18 @@ import { mockRequest } from '../../support/context.support'
 describe('Request', () => {
   const testUrl = 'http://test.example.com:8080/path/to?page=2'
 
+  describe('.set & .get', () => {
+    it('sets and gets response headers', () => {
+      const req = mockRequest(testUrl)
+
+      expect(req.has('content-type')).toEqual(false)
+      req.set('content-type', 'text/html')
+      expect(req.get('content-type')).toEqual('text/html')
+      expect(req.has('content-type')).toEqual(true)
+      expect(req.native.headers['content-type']).toEqual('text/html')
+    })
+  })
+
   describe('.domain', () => {
     it('returns the extracted domain', () => {
       const req = mockRequest(testUrl)
