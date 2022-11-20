@@ -1,5 +1,6 @@
-import { IncomingMessage } from 'http'
+import { IncomingMessage, ServerResponse } from 'http'
 import Request from './request'
+import Response from './response'
 
 /**
  * Common interface for per request state.
@@ -23,10 +24,16 @@ export default class Context {
   public readonly request: Request
 
   /**
+   * The response.
+   */
+  public readonly response: Response
+
+  /**
    * Constructs a new context.
    */
-  constructor (req: IncomingMessage) {
+  constructor (req: IncomingMessage, res: ServerResponse) {
     this.state = {}
     this.request = new Request(req)
+    this.response = new Response(res)
   }
 }

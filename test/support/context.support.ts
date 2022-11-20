@@ -1,7 +1,7 @@
-import { Request, Context } from '../../src'
+import { Request, Response, Context } from '../../src'
 import { IncomingMessage } from 'http'
 import { URL } from 'url'
-import { createRequest, RequestOptions } from 'node-mocks-http'
+import { createRequest, RequestOptions, createResponse } from 'node-mocks-http'
 
 declare module 'node-mocks-http' {
   interface RequestOptions {
@@ -15,9 +15,14 @@ export function mockRequest (url: string, opts: RequestOptions = {}): Request {
   return new Request(req)
 }
 
+export function mockResponse (): Response {
+  const res = createResponse()
+  return new Response(res)
+}
+
 export function mockContext (url: string, opts: RequestOptions = {}): Context {
   const req = createIncomingMessage(url, opts)
-  return new Context(req)
+  return new Context(req, createResponse())
 }
 
 function createIncomingMessage (url: string, opts: RequestOptions = {}) {
